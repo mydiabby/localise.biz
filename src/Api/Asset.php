@@ -72,7 +72,7 @@ class Asset extends HttpApi
             'name' => $tag,
         ];
 
-        $response = $this->httpPost(sprintf('/api/assets/%s/tags?key=%s', $id, $projectKey), $param);
+        $response = $this->httpPost(sprintf('/api/assets/%s/tags?key=%s', rawurlencode($id), $projectKey), $param);
         if (!$this->hydrator) {
             return $response;
         }
