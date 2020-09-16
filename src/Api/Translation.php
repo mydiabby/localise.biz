@@ -98,7 +98,7 @@ class Translation extends HttpApi
 
         return $this->hydrator->hydrate($response, TranslationDeleted::class);
     }
-    
+
     /**
      * Flag a new translation.
      * {@link https://localise.biz/api/docs/translations/flagtranslation}.
@@ -114,7 +114,7 @@ class Translation extends HttpApi
      */
     public function flag(string $projectKey, string $id, string $locale, string $flag)
     {
-        $response = $this->httpPostRaw(sprintf('/api/translations/%s/%s/flag?key=%s', rawurlencode($id), $locale, $projectKey), "&flag=".$flag);
+        $response = $this->httpPost(sprintf('/api/translations/%s/%s/flag?key=%s', rawurlencode($id), $locale, $projectKey), ["flag" => $flag]);
         if (!$this->hydrator) {
             return $response;
         }
